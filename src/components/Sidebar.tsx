@@ -1,4 +1,3 @@
-
 import { Home, Settings, BarChart3, Activity, Layers, Zap } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -13,35 +12,35 @@ export const Sidebar = () => {
   ];
 
   return (
-    <div className="w-44 bg-sidebar border-r border-sidebar-border flex flex-col flex-shrink-0">
+    <div className="w-64 bg-sidebar border-r border-sidebar-border flex flex-col">
       {/* Logo */}
-      <div className="p-4 border-b border-sidebar-border flex-shrink-0">
+      <div className="p-6 border-b border-sidebar-border">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-blue-bright flex items-center justify-center">
             <Zap className="w-4 h-4 text-white" />
           </div>
           <div>
-            <h1 className="text-base font-semibold text-sidebar-foreground">TactileSense</h1>
+            <h1 className="text-lg font-semibold text-sidebar-foreground">TactileSense</h1>
             <p className="text-xs text-muted-foreground">Pro Analysis</p>
           </div>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
+      <nav className="flex-1 p-4 space-y-2">
         {menuItems.map((item, index) => {
           const Icon = item.icon;
           return (
             <Button
               key={index}
               variant={item.active ? "default" : "ghost"}
-              className={`w-full justify-start gap-3 h-10 text-sm ${
+              className={`w-full justify-start gap-3 h-12 ${
                 item.active 
                   ? "bg-primary text-primary-foreground shadow-lg" 
                   : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               }`}
             >
-              <Icon className="w-4 h-4" />
+              <Icon className="w-5 h-5" />
               <span className="font-medium">{item.label}</span>
             </Button>
           );
@@ -49,7 +48,7 @@ export const Sidebar = () => {
       </nav>
 
       {/* Status */}
-      <div className="p-3 border-t border-sidebar-border flex-shrink-0">
+      <div className="p-4 border-t border-sidebar-border">
         <div className="bg-sidebar-accent rounded-lg p-3">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
