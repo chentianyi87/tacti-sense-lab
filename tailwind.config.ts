@@ -61,7 +61,20 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Scientific colors
+				'cyan-bright': 'hsl(var(--cyan-bright))',
+				'cyan-glow': 'hsl(var(--cyan-glow))',
+				'teal-deep': 'hsl(var(--teal-deep))',
+				'grid-primary': 'hsl(var(--grid-primary))',
+				'grid-secondary': 'hsl(var(--grid-secondary))',
+				'sensor-active': 'hsl(var(--sensor-active))',
+				'sensor-inactive': 'hsl(var(--sensor-inactive))',
+				'force-vector': 'hsl(var(--force-vector))',
+				// Chart colors
+				'chart-fx': 'hsl(var(--chart-fx))',
+				'chart-fy': 'hsl(var(--chart-fy))',
+				'chart-fz': 'hsl(var(--chart-fz))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
