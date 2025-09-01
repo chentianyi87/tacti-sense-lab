@@ -9,7 +9,7 @@ import { Sidebar } from "@/components/Sidebar";
 
 const Index = () => {
   return (
-    <div className="h-screen bg-background text-foreground flex overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground flex">
       {/* Left Sidebar */}
       <Sidebar />
       
