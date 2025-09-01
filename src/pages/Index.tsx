@@ -46,8 +46,24 @@ const Index = () => {
           </div>
 
           {/* Center - Sensor Visualization */}
-          <div className="flex-1 p-6">
-            <SensorVisualization />
+          <div className="flex-1 p-6 flex flex-col">
+            <div className="bg-gradient-to-br from-card to-secondary/50 border border-border rounded-xl p-6 shadow-xl relative overflow-hidden flex-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-bright/5 to-transparent pointer-events-none"></div>
+              <div className="relative z-10 h-full flex flex-col">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-cyan-bright rounded-full animate-pulse"></div>
+                    <h3 className="text-xl font-semibold text-foreground">触觉传感器可视化</h3>
+                  </div>
+                  <div className="text-sm text-muted-foreground bg-secondary/50 px-3 py-1 rounded-lg">
+                    实时监测
+                  </div>
+                </div>
+                <div className="flex-1 min-h-0">
+                  <SensorVisualization />
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Right Panel */}
