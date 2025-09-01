@@ -234,6 +234,8 @@ export const SensorVisualization = () => {
 
     // Setup canvas size with DPR and observe resize
     const dpr = window.devicePixelRatio || 1;
+    let needsResize = false;
+    
     const setCanvasSize = () => {
       const cssW = canvas.clientWidth;
       const cssH = canvas.clientHeight;
@@ -246,16 +248,27 @@ export const SensorVisualization = () => {
     setCanvasSize();
     drawFingerTactileSensor();
 
+    // Debounced resize observer
     const ro = new ResizeObserver(() => {
-      setCanvasSize();
-      drawFingerTactileSensor();
+      needsResize = true;
     });
     ro.observe(canvas);
 
-    // Animation loop
+    // Controlled animation loop at ~30fps
     let raf = 0;
-    const animate = () => {
-      drawFingerTactileSensor();
+    let lastTime = 0;
+    const targetFPS = 30;
+    const frameInterval = 1000 / targetFPS;
+    
+    const animate = (currentTime: number) => {
+      if (currentTime - lastTime >= frameInterval) {
+        if (needsResize) {
+          setCanvasSize();
+          needsResize = false;
+        }
+        drawFingerTactileSensor();
+        lastTime = currentTime;
+      }
       raf = requestAnimationFrame(animate);
     };
     raf = requestAnimationFrame(animate);

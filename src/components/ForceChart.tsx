@@ -38,19 +38,30 @@ export const ForceChart = () => {
     };
 
     generateData();
-    const interval = setInterval(() => {
-      setForceData(prev => {
-        const newPoint: ForceData = {
-          time: prev.length * 0.1,
-          fx: -0.1 + Math.sin(prev.length * 0.2) * 0.05 + (Math.random() - 0.5) * 0.02,
-          fy: 0.9 + Math.cos(prev.length * 0.15) * 0.1 + (Math.random() - 0.5) * 0.03,
-          fz: 3.7 + Math.sin(prev.length * 0.08) * 0.3 + (Math.random() - 0.5) * 0.1
-        };
-        return [...prev.slice(-99), newPoint];
-      });
-    }, 100);
+    
+    // Controlled data updates at consistent intervals
+    let raf = 0;
+    let lastTime = 0;
+    const updateInterval = 100; // 10fps for force data
+    
+    const animate = (currentTime: number) => {
+      if (currentTime - lastTime >= updateInterval) {
+        setForceData(prev => {
+          const newPoint: ForceData = {
+            time: prev.length * 0.1,
+            fx: -0.1 + Math.sin(prev.length * 0.2) * 0.05 + (Math.random() - 0.5) * 0.02,
+            fy: 0.9 + Math.cos(prev.length * 0.15) * 0.1 + (Math.random() - 0.5) * 0.03,
+            fz: 3.7 + Math.sin(prev.length * 0.08) * 0.3 + (Math.random() - 0.5) * 0.1
+          };
+          return [...prev.slice(-99), newPoint];
+        });
+        lastTime = currentTime;
+      }
+      raf = requestAnimationFrame(animate);
+    };
+    raf = requestAnimationFrame(animate);
 
-    return () => clearInterval(interval);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   const drawChart = (

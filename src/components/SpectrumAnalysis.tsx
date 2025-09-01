@@ -94,9 +94,21 @@ export const SpectrumAnalysis = () => {
 
     drawSpectrum();
 
-    // Update spectrum periodically
-    const interval = setInterval(drawSpectrum, 200);
-    return () => clearInterval(interval);
+    // Controlled update at consistent intervals
+    let raf = 0;
+    let lastTime = 0;
+    const updateInterval = 200; // 5fps for spectrum
+    
+    const animate = (currentTime: number) => {
+      if (currentTime - lastTime >= updateInterval) {
+        drawSpectrum();
+        lastTime = currentTime;
+      }
+      raf = requestAnimationFrame(animate);
+    };
+    raf = requestAnimationFrame(animate);
+    
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   return (
