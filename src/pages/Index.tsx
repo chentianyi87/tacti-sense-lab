@@ -4,94 +4,58 @@ import { ContactParameters } from "@/components/ContactParameters";
 import { SpectrumAnalysis } from "@/components/SpectrumAnalysis";
 import { SurfaceRecognition } from "@/components/SurfaceRecognition";
 import { AccuracyMetrics } from "@/components/AccuracyMetrics";
+import { Sidebar } from "@/components/Sidebar";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <div className="border-b border-border bg-card px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex bg-secondary rounded px-3 py-1">
-              <span className="text-sm font-mono text-muted-foreground mr-2">DP-S2716</span>
-              <span className="text-sm font-mono text-muted-foreground mr-2">DP-M2626</span>
-              <span className="text-sm font-mono bg-primary text-primary-foreground px-2 rounded">DP-L3530</span>
-              <span className="text-sm font-mono text-muted-foreground ml-2">IP-L5325</span>
-              <span className="text-sm font-mono text-muted-foreground ml-2">IP-M3025</span>
-              <span className="text-sm font-mono text-muted-foreground ml-2">IP-M2324</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <button className="bg-primary text-primary-foreground px-4 py-2 rounded text-sm font-medium">
-              打开
-            </button>
-            <button className="bg-cyan-bright text-background px-4 py-2 rounded text-sm font-medium">
-              开始
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Layout */}
-      <div className="flex h-[calc(100vh-80px)]">
-        {/* Center - Sensor Visualization */}
-        <div className="flex-1 p-6">
-          <SensorVisualization />
-        </div>
-
-        {/* Right Panel */}
-        <div className="w-96 bg-card border-l border-border p-4 space-y-4 overflow-y-auto">
-          {/* Data Sampling Controls */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">数据采样</span>
-              <div className="flex gap-2">
-                <button className="bg-primary text-primary-foreground px-3 py-1 rounded text-sm">
-                  升级
-                </button>
-                <button className="bg-secondary text-secondary-foreground px-3 py-1 rounded text-sm">
-                  设置
-                </button>
-                <button className="bg-cyan-bright text-background px-3 py-1 rounded text-sm">
-                  打开文件夹
-                </button>
+    <div className="min-h-screen bg-background text-foreground flex">
+      {/* Left Sidebar */}
+      <Sidebar />
+      
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        {/* Header */}
+        <div className="border-b border-border bg-card px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <h2 className="text-xl font-semibold text-foreground">触觉传感器分析系统</h2>
+              <div className="flex bg-secondary rounded-lg px-3 py-1 gap-2">
+                <span className="text-xs font-mono text-muted-foreground">DP-S2716</span>
+                <span className="text-xs font-mono text-muted-foreground">DP-M2626</span>
+                <span className="text-xs font-mono bg-primary text-primary-foreground px-2 py-0.5 rounded">DP-L3530</span>
+                <span className="text-xs font-mono text-muted-foreground">IP-L5325</span>
               </div>
             </div>
-            
-            {/* Port Selection */}
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">端口</span>
-              <div className="flex gap-1">
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((port) => (
-                  <button
-                    key={port}
-                    className={`w-6 h-6 text-xs rounded ${
-                      port === 5 
-                        ? 'bg-primary text-primary-foreground' 
-                        : 'bg-secondary text-secondary-foreground hover:bg-muted'
-                    }`}
-                  >
-                    {port}
-                  </button>
-                ))}
-              </div>
+            <div className="flex items-center gap-3">
+              <button className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                连接设备
+              </button>
+              <button className="bg-gradient-to-r from-cyan-bright to-blue-bright hover:from-cyan-bright/90 hover:to-blue-bright/90 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-lg">
+                开始采集
+              </button>
             </div>
           </div>
+        </div>
 
-          {/* Force Charts */}
-          <ForceChart />
+        {/* Dashboard Layout */}
+        <div className="flex-1 flex">
+          {/* Left Panel */}
+          <div className="w-80 p-6 space-y-6 overflow-y-auto">
+            <ForceChart />
+            <ContactParameters />
+          </div>
 
-          {/* Contact Parameters */}
-          <ContactParameters />
+          {/* Center - Sensor Visualization */}
+          <div className="flex-1 p-6">
+            <SensorVisualization />
+          </div>
 
-          {/* Spectrum Analysis */}
-          <SpectrumAnalysis />
-
-          {/* Surface Recognition */}
-          <SurfaceRecognition />
-
-          {/* Accuracy Metrics */}
-          <AccuracyMetrics />
+          {/* Right Panel */}
+          <div className="w-80 p-6 space-y-6 overflow-y-auto">
+            <SpectrumAnalysis />
+            <SurfaceRecognition />
+            <AccuracyMetrics />
+          </div>
         </div>
       </div>
     </div>

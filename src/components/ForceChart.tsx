@@ -174,24 +174,39 @@ export const ForceChart = () => {
   ];
 
   return (
-    <div className="space-y-3">
-      {forceCharts.map(({ key, label, value, color }) => (
-        <div key={key} className="bg-secondary rounded-lg p-3">
-          <div className="flex items-center justify-between mb-2">
-            <span className={`text-sm font-mono font-semibold ${color}`}>{label}</span>
-            <span className={`text-lg font-mono ${color}`}>
-              {value.toFixed(1)}
-            </span>
+    <div className="bg-gradient-to-br from-card to-secondary/50 border border-border rounded-xl p-6 shadow-xl relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-bright/5 to-transparent pointer-events-none"></div>
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+            <h3 className="text-lg font-semibold text-foreground">力曲线监测</h3>
           </div>
-          <div className="h-12 bg-card rounded border border-border">
-            <canvas
-              ref={canvasRefs[key as keyof typeof canvasRefs]}
-              className="w-full h-full"
-              style={{ width: '100%', height: '100%' }}
-            />
+          <div className="text-xs text-muted-foreground bg-secondary/50 px-2 py-1 rounded">
+            实时数据
           </div>
         </div>
-      ))}
+        
+        <div className="space-y-3">
+          {forceCharts.map(({ key, label, value, color }) => (
+            <div key={key} className="bg-secondary/30 backdrop-blur-sm rounded-lg p-4 border border-border/50">
+              <div className="flex items-center justify-between mb-2">
+                <span className={`text-sm font-mono font-semibold ${color}`}>{label}</span>
+                <span className={`text-xl font-mono font-bold ${color}`}>
+                  {value.toFixed(1)} N
+                </span>
+              </div>
+              <div className="h-16 bg-card/50 rounded-lg border border-border/30 overflow-hidden">
+                <canvas
+                  ref={canvasRefs[key as keyof typeof canvasRefs]}
+                  className="w-full h-full"
+                  style={{ width: '100%', height: '100%' }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

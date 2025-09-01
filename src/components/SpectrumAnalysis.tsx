@@ -100,38 +100,47 @@ export const SpectrumAnalysis = () => {
   }, []);
 
   return (
-    <div className="bg-secondary rounded-lg p-3">
-      <h3 className="text-sm font-semibold text-foreground mb-3 border-b border-border pb-2">
-        频谱分析 (FFT)
-      </h3>
-      
-      <div className="h-24 bg-card rounded border border-border mb-3">
-        <canvas
-          ref={canvasRef}
-          className="w-full h-full"
-          style={{ width: '100%', height: '100%' }}
-        />
-      </div>
-
-      <div className="grid grid-cols-2 gap-3 text-xs">
-        <div className="space-y-1">
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">主频</span>
-            <span className="text-cyan-bright font-mono">52.3 Hz</span>
+    <div className="bg-gradient-to-br from-card to-secondary/50 border border-border rounded-xl p-6 shadow-xl relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-bright/5 to-transparent pointer-events-none"></div>
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-cyan-bright rounded-full animate-pulse"></div>
+            <h3 className="text-lg font-semibold text-foreground">频谱分析</h3>
           </div>
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">峰值幅度</span>
-            <span className="text-cyan-bright font-mono">0.78</span>
+          <div className="text-xs text-muted-foreground bg-secondary/50 px-2 py-1 rounded">
+            FFT实时
           </div>
         </div>
-        <div className="space-y-1">
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">带宽</span>
-            <span className="text-cyan-bright font-mono">15.6 Hz</span>
+        
+        <div className="h-32 bg-card/50 rounded-lg border border-border/30 mb-4 overflow-hidden">
+          <canvas
+            ref={canvasRef}
+            className="w-full h-full"
+            style={{ width: '100%', height: '100%' }}
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-4 text-sm">
+          <div className="space-y-2">
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">主频</span>
+              <span className="text-primary font-mono font-bold">52.3 Hz</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">峰值幅度</span>
+              <span className="text-primary font-mono font-bold">0.78</span>
+            </div>
           </div>
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">谐波失真</span>
-            <span className="text-cyan-bright font-mono">2.1%</span>
+          <div className="space-y-2">
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">带宽</span>
+              <span className="text-primary font-mono font-bold">15.6 Hz</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">谐波失真</span>
+              <span className="text-primary font-mono font-bold">2.1%</span>
+            </div>
           </div>
         </div>
       </div>

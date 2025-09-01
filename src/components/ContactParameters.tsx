@@ -9,36 +9,48 @@ export const ContactParameters = () => {
   ];
 
   return (
-    <div className="bg-secondary rounded-lg p-3">
-      <h3 className="text-sm font-semibold text-foreground mb-3 border-b border-border pb-2">
-        接触参数
-      </h3>
-      <div className="space-y-2">
-        {parameters.map((param, index) => (
-          <div key={index} className="flex items-center justify-between text-sm">
-            <span className="text-muted-foreground">{param.label}</span>
-            <div className="flex items-center gap-1">
-              <span className="text-cyan-bright font-mono font-medium">
-                {param.value}
-              </span>
-              <span className="text-muted-foreground text-xs">{param.unit}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-      
-      {/* Status indicators */}
-      <div className="mt-3 pt-3 border-t border-border">
-        <div className="flex items-center justify-between text-xs">
-          <span className="text-muted-foreground">状态</span>
+    <div className="bg-gradient-to-br from-card to-secondary/50 border border-border rounded-xl p-6 shadow-xl relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-bright/5 to-transparent pointer-events-none"></div>
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-force-vector rounded-full"></div>
-            <span className="text-force-vector">稳定接触</span>
+            <div className="w-2 h-2 bg-blue-bright rounded-full animate-pulse"></div>
+            <h3 className="text-lg font-semibold text-foreground">接触参数</h3>
+          </div>
+          <div className="text-xs text-muted-foreground bg-secondary/50 px-2 py-1 rounded">
+            实时更新
           </div>
         </div>
-        <div className="flex items-center justify-between text-xs mt-1">
-          <span className="text-muted-foreground">采样率</span>
-          <span className="text-cyan-bright font-mono">1000 Hz</span>
+        
+        <div className="space-y-4">
+          {parameters.map((param, index) => (
+            <div key={index} className="bg-secondary/30 backdrop-blur-sm rounded-lg p-4 border border-border/50">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm text-muted-foreground">{param.label}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xl font-bold text-primary font-mono">
+                    {param.value}
+                  </span>
+                  <span className="text-sm text-muted-foreground">{param.unit}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        {/* Status indicators */}
+        <div className="mt-6 pt-4 border-t border-border/50">
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-muted-foreground">系统状态</span>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-green-400">稳定接触</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between text-sm mt-2">
+            <span className="text-muted-foreground">采样率</span>
+            <span className="text-primary font-mono">1000 Hz</span>
+          </div>
         </div>
       </div>
     </div>
