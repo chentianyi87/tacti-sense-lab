@@ -248,11 +248,11 @@ export const SensorVisualization = () => {
     setCanvasSize();
     drawFingerTactileSensor();
 
-    // Debounced resize observer
-    const ro = new ResizeObserver(() => {
+    // Window resize handler (avoids ResizeObserver loop issues)
+    const onResize = () => {
       needsResize = true;
-    });
-    ro.observe(canvas);
+    };
+    window.addEventListener('resize', onResize);
 
     // Controlled animation loop at ~30fps
     let raf = 0;
@@ -275,7 +275,7 @@ export const SensorVisualization = () => {
 
     return () => {
       cancelAnimationFrame(raf);
-      ro.disconnect();
+      window.removeEventListener('resize', onResize);
     };
   }, []);
 
