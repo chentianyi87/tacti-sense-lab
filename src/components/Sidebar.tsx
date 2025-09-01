@@ -13,7 +13,7 @@ export const Sidebar = () => {
   ];
 
   return (
-    <div className="w-56 bg-sidebar border-r border-sidebar-border flex flex-col flex-shrink-0">
+    <div className="w-44 bg-sidebar border-r border-sidebar-border flex flex-col flex-shrink-0">
       {/* Logo */}
       <div className="p-4 border-b border-sidebar-border flex-shrink-0">
         <div className="flex items-center gap-3">

@@ -41,7 +41,7 @@ const Index = () => {
         {/* Dashboard Layout */}
         <div className="flex-1 flex min-h-0">
           {/* Left Panel */}
-          <div className="w-72 p-4 space-y-4 overflow-y-auto">
+          <div className="w-60 p-3 space-y-3 overflow-y-auto">
             <div className="h-[45%]">
               <ForceChart />
             </div>
@@ -72,7 +72,7 @@ const Index = () => {
           </div>
 
           {/* Right Panel */}
-          <div className="w-72 p-4 space-y-4 overflow-y-auto">
+          <div className="w-60 p-3 space-y-3 overflow-y-auto">
             <div className="h-[30%]">
               <SpectrumAnalysis />
             </div>
